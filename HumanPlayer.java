@@ -8,6 +8,9 @@ public class HumanPlayer extends Player {
         super(name, piece);
     }
 
+    public int[] makeMove(Board board){
+        return new int[] {0 ,0};
+    }
 }
 
 

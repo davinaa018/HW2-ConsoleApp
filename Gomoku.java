@@ -22,7 +22,7 @@ public class Gomoku {
             player2 = new HumanPlayer(ui.getPlayerName(2), 'O');
         } else if (gameMode == 2) {
             player1 = new HumanPlayer(ui.getPlayerName(1), 'X');
-            // player2 = new ComputerPlayer("Computer", 'O');
+            player2 = new ComputerPlayer("Computer", 'O');
         }
 
         board.initializeBoard();
@@ -36,14 +36,17 @@ public class Gomoku {
                 continue;
             }
             ui.showBoard(board);
+
             if (board.hasWinner(move[0], move[1])) {
                 ui.showWinner(currentPlayer);
                 break;
             }
+
             if (board.isFull()) {
                 ui.showTie();
                 break;
             }
+
             currentPlayer = currentPlayer == player1 ? player2 : player1;
         }
     }

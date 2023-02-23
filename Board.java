@@ -112,6 +112,9 @@ public class Board {
     }
 
 
+    public boolean isCellEmpty(int row, int col){
+        return board[row][col] == '-';
+    }
 
 
 }
