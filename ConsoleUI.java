@@ -39,8 +39,11 @@ public class ConsoleUI {
 
 
     public int[] getMove(Player player, Board board) {
-        System.out.print(player.getName() + ", enter row and column numbers (e.g. 1 2): ");
+        System.out.print(player.getName() + ", enter row and column numbers (e.g. 1 2) or -1 to quit: ");
         int row = scanner.nextInt();
+        if (row == -1){
+            System.exit(0);
+        }
         int col = scanner.nextInt();
         return new int[]{row, col};
     }
@@ -55,5 +58,9 @@ public class ConsoleUI {
 
     public void showTie() {
         System.out.println("It's a tie!");
+    }
+
+    public void GameModeError(){
+        System.out.println("Please choose a valid option!");
     }
 }
