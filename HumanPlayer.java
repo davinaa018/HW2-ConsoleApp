@@ -1,6 +1,5 @@
 package noapplet.assignments.HW2;
 
-import java.util.Scanner;
 
 public class HumanPlayer extends Player {
         
@@ -8,8 +7,9 @@ public class HumanPlayer extends Player {
         super(name, piece);
     }
 
-    public int[] makeMove(Board board){
-        return new int[] {0 ,0};
+    @Override
+    public Coordinate makeMove(Board board){
+        return new Coordinate(0, 0);
     }
 }
 

@@ -33,22 +33,23 @@ public class ConsoleUI {
         }
     }
 
-
-    public int[] getMove(Player player, Board board) {
-        int[] move = new int[2];
-        if (player instanceof HumanPlayer){
+    public Coordinate getMove(Player player, Board board) {
+        Coordinate move = null;
+        if (player instanceof HumanPlayer) {
             System.out.print(player.getName() + ", enter row and column numbers (e.g. 1 2) or -1 to quit: ");
-            move[0] = scanner.nextInt();
-            if (move[0] == -1){
+            int x = scanner.nextInt();
+            if (x == -1) {
                 System.exit(0);
             }
-            move[1] = scanner.nextInt();
-        }else {
-            move = ((ComputerPlayer) player).makeMove(board);
-            System.out.println(player.getName() + " played at row " + (move[0]) + " column " + (move[1] ));
+            int y = scanner.nextInt();
+            move = new Coordinate(x, y);
+        } else {
+            move = ((ComputerPlayer) player).makeMove(board);       
+            System.out.println(player.getName() + " played at " + move.toString());
         }
-        return move;   
+        return move;
     }
+    
     
     public void showInvalidMove() {
         System.out.println("Invalid move. Please try again.");

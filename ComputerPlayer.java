@@ -11,13 +11,14 @@ public class ComputerPlayer extends Player {
     }
 
     @Override
-    public int[] makeMove(Board board) {
+    public Coordinate makeMove(Board board) {
         int size = board.getSize();
-        int row, col;
+        int x, y;
         do {
-            row = random.nextInt(size);
-            col = random.nextInt(size);
-        } while (!board.isCellEmpty(row, col));
-        return new int[]{row, col};
+            x = random.nextInt(size);
+            y = random.nextInt(size);
+        } while (!board.isCellEmpty(x, y));
+        return new Coordinate(x, y);
     }
+    
 }

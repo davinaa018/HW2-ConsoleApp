@@ -1,5 +1,10 @@
 package noapplet.assignments.HW2;
 
+/**
+ * A class for creating a new Game Board
+ * @author Diego Jared Avina
+ * @version "19.0.2" 2023-01-17
+ */
 public class Board {
     private char[][] board;
     private int size;
@@ -9,6 +14,9 @@ public class Board {
         this.board = new char[size][size];
     }
 
+    /**
+     * Initializes the board by filling the board with '-' signifying an empty space
+     */
     public void initializeBoard(){
         for (int i = 0; i < size; i++){
             for (int j = 0; j < size; j++){
@@ -17,10 +25,21 @@ public class Board {
         }
     }
 
+    /**
+     * Gets the current size of the board
+     * @return an integer that signifyies the size of the board
+     */
     public int getSize(){
         return size;
     }
     
+    /**
+     * Checks if the current move is valid, if it is we place the player symbol
+     * @param row - row provided by user
+     * @param col - column provided by user
+     * @param piece - symbol of current user
+     * @return boolean response depending if the move is valid or not
+     */
     public boolean makeMove(int row, int col, char piece) {
         if (row < 0 || row >= size || col < 0 || col >= size || board[row][col] != '-') {
             return false;
@@ -29,10 +48,21 @@ public class Board {
         return true;
     }
 
+    /**
+     * Returns the current piece given the row and column
+     * @param row - row given by user
+     * @param col - column given by user
+     * @return returns the current piece located at the coordinates provided
+     */
     public char getPieceAt(int row, int col){
         return board[row][col];
     }
 
+    
+    /**
+     * Checks if current board is full
+     * @return returns false if we encounter an empty space '-', otherwise returns true
+     */
     public boolean isFull(){
         for (int i = 0; i < size; i++){
             for (int j = 0; j < size; j++){
@@ -45,6 +75,12 @@ public class Board {
     }
 
     
+    /**
+     * Checks if there is a winner by checking horizantally, vertically, and diagonals
+     * @param row
+     * @param col
+     * @return returns true if we encounter 5 of the same symbols in a row, otherwise returns false
+     */
     public boolean hasWinner(int row, int col) {
         char piece = board[row][col];
 
@@ -112,6 +148,12 @@ public class Board {
     }
 
 
+    /**
+     * Checks if the board at the coordinates provided contains an empty space: '-'
+     * @param row
+     * @param col
+     * @return returns true if the we encounter an empty space: '-', otherwise false
+     */
     public boolean isCellEmpty(int row, int col){
         return board[row][col] == '-';
     }
