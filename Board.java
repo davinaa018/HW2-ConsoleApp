@@ -1,5 +1,7 @@
 package noapplet.assignments.HW2;
 
+import java.util.Random;
+
 /**
  * A class for creating a new Game Board
  * @author Diego Jared Avina
@@ -147,6 +149,55 @@ public class Board {
         return false;
     }
 
+    
+    /**
+     * Suggests a move to a Human Player if they enable cheatmode
+     * @param playerSymbol
+     * @return a coordinate containing a random move, a winning move, or a blocking move
+     */
+    public Coordinate getSuggestion(char playerSymbol) {
+        Coordinate suggestion;
+    
+        // Check for a winning move
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col++) {
+                if (board[row][col] == '-') {
+                    board[row][col] = playerSymbol;
+                    if (hasWinner(row, col)) {
+                        board[row][col] = '-';
+                        return new Coordinate(row, col);
+                    }
+                    board[row][col] = '-';
+                }
+            }
+        }
+    
+        // Check for a blocking move
+        char opponentSymbol = (playerSymbol == 'X') ? 'O' : 'X';
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col++) {
+                if (board[row][col] == '-') {
+                    board[row][col] = opponentSymbol;
+                    if (hasWinner(row, col)) {
+                        board[row][col] = '-';
+                        return new Coordinate(row, col);
+                    }
+                    board[row][col] = '-';
+                }
+            }
+        }
+    
+        // If there is no winning or blocking move, suggest a random move
+        Random rand = new Random();
+        do {
+            suggestion = new Coordinate(rand.nextInt(size), rand.nextInt(size));
+        } while (!isCellEmpty(suggestion.getX(), suggestion.getY()));
+    
+        return suggestion;
+    }
+    
+    
+    
 
     /**
      * Checks if the board at the coordinates provided contains an empty space: '-'

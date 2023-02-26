@@ -8,20 +8,26 @@ public class Gomoku {
     private Board board;
     private List<Player> players;
     private int currentPlayerIndex;
+    private boolean cheatMode; 
 
     public Gomoku() {
         this.ui = new ConsoleUI();
         this.board = new Board(15);
         this.players = new ArrayList<>();
         this.currentPlayerIndex = 0;
+        this.cheatMode = false;
     }
 
     public void start() {
         int gameMode = ui.chooseGameMode();
+        while (gameMode > 2 || gameMode < 0){
+            ui.GameModeError();
+            gameMode = ui.chooseGameMode();
+        }
         if (gameMode == 1) {
             players.add(new HumanPlayer(ui.getPlayerName(1), 'X'));
             players.add(new HumanPlayer(ui.getPlayerName(2), 'O'));
-        } else {
+        } else if(gameMode == 2) {
             players.add(new HumanPlayer(ui.getPlayerName(1), 'X'));
             players.add(new ComputerPlayer("Computer", 'O'));
         }

@@ -6,7 +6,7 @@ public class ConsoleUI {
     private Scanner scanner;
 
     public ConsoleUI() {
-        scanner = new Scanner(System.in);
+        this.scanner = new Scanner(System.in);
     }
 
     public int chooseGameMode() {
@@ -36,18 +36,31 @@ public class ConsoleUI {
     public Coordinate getMove(Player player, Board board) {
         Coordinate move = null;
         if (player instanceof HumanPlayer) {
-            System.out.print(player.getName() + ", enter row and column numbers (e.g. 1 2) or -1 to quit: ");
-            int x = scanner.nextInt();
-            if (x == -1) {
-                System.exit(0);
+            int m = chooseMove();
+            if(m == 1){
+                System.out.print(player.getName() + ", enter row and column numbers (e.g. 1 2) or -1 to quit: ");
+                int x = scanner.nextInt();
+                if (x == -1) {
+                    System.exit(0);
+                }
+                int y = scanner.nextInt();
+                move = new Coordinate(x, y);
+            }else{
+                move = board.getSuggestion(player.getSymbol());
+                System.out.println(player.getName() + " played at " + move.toString());
             }
-            int y = scanner.nextInt();
-            move = new Coordinate(x, y);
         } else {
             move = ((ComputerPlayer) player).makeMove(board);       
             System.out.println(player.getName() + " played at " + move.toString());
         }
         return move;
+    }
+
+    public int chooseMove(){
+        System.out.println("Please choose one of the following");
+        System.out.println("1. Choose Row and Column");
+        System.out.println("2. Enable CheatMode");
+        return scanner.nextInt();
     }
     
     
@@ -66,4 +79,5 @@ public class ConsoleUI {
     public void GameModeError(){
         System.out.println("Please choose a valid option!");
     }
+
 }

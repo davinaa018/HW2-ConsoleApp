@@ -10,6 +10,7 @@ public class ComputerPlayer extends Player {
         this.random = new Random();
     }
 
+
     @Override
     public Coordinate makeMove(Board board) {
         int size = board.getSize();
@@ -20,5 +21,7 @@ public class ComputerPlayer extends Player {
         } while (!board.isCellEmpty(x, y));
         return new Coordinate(x, y);
     }
+
+    
     
 }
