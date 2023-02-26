@@ -33,29 +33,17 @@ public class ConsoleUI {
         }
     }
 
-    public Coordinate getMove(Player player, Board board) {
-        Coordinate move = null;
-        if (player instanceof HumanPlayer) {
-            int m = chooseMove();
-            if(m == 1){
-                System.out.print(player.getName() + ", enter row and column numbers (e.g. 1 2) or -1 to quit: ");
-                int x = scanner.nextInt();
-                if (x == -1) {
-                    System.exit(0);
-                }
-                int y = scanner.nextInt();
-                move = new Coordinate(x, y);
-            }else{
-                move = board.getSuggestion(player.getSymbol());
-                System.out.println(player.getName() + " played at " + move.toString());
-            }
-        } else {
-            move = ((ComputerPlayer) player).makeMove(board);       
-            System.out.println(player.getName() + " played at " + move.toString());
+    public Coordinate playerMove(Player player){
+        int row, col;
+        System.out.print(player.getName() + ", enter row and column numbers (e.g. 1 2) or -1 to quit: ");
+        row = scanner.nextInt();
+        if (row == -1){
+            System.exit(0);
         }
-        return move;
+        col = scanner.nextInt();
+        return new Coordinate(row, col);
     }
-
+    
     public int chooseMove(){
         System.out.println("Please choose one of the following");
         System.out.println("1. Choose Row and Column");
