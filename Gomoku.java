@@ -8,14 +8,12 @@ public class Gomoku {
     private Board board;
     private List<Player> players;
     private int currentPlayerIndex;
-    private boolean cheatMode; 
 
     public Gomoku() {
         this.ui = new ConsoleUI();
         this.board = new Board(15);
         this.players = new ArrayList<>();
         this.currentPlayerIndex = 0;
-        this.cheatMode = false;
     }
 
     public void start() {
@@ -25,10 +23,10 @@ public class Gomoku {
             gameMode = ui.chooseGameMode();
         }
         if (gameMode == 1) {
-            players.add(new HumanPlayer(ui.getPlayerName(1), 'X'));
-            players.add(new HumanPlayer(ui.getPlayerName(2), 'O'));
+            players.add(new HumanPlayer(ui.getPlayerName(1), 'X', this.ui));
+            players.add(new HumanPlayer(ui.getPlayerName(2), 'O', this.ui));
         } else if(gameMode == 2) {
-            players.add(new HumanPlayer(ui.getPlayerName(1), 'X'));
+            players.add(new HumanPlayer(ui.getPlayerName(1), 'X', this.ui));
             players.add(new ComputerPlayer("Computer", 'O'));
         }
 
@@ -37,8 +35,7 @@ public class Gomoku {
         ui.showBoard(board);
 
         while (true) {
-            // instead o using ui use player.makeMOVE AND CHange it fot human
-            Coordinate move = ui.getMove(currentPlayer, board);
+            Coordinate move = currentPlayer.pickPlace(board);
             if (!board.makeMove(move.getX(), move.getY(), currentPlayer.getSymbol())) {
                 ui.showInvalidMove();
                 continue;

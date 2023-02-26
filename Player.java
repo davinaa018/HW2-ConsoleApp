@@ -17,5 +17,5 @@ public abstract class Player {
         return symbol;
     }
 
-    public abstract Coordinate makeMove(Board board);
+    public abstract Coordinate pickPlace(Board board);
 }

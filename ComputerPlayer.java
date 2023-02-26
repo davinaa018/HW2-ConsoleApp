@@ -12,7 +12,7 @@ public class ComputerPlayer extends Player {
 
 
     @Override
-    public Coordinate makeMove(Board board) {
+    public Coordinate pickPlace(Board board) {
         int size = board.getSize();
         int x, y;
         do {
