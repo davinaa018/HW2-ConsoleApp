@@ -3,14 +3,24 @@ package noapplet.assignments.HW2;
 import java.util.Random;
 
 /**
- * A class for creating a new Game Board
- * @author Diego Jared Avina
- * @version "19.0.2" 2023-01-17
- */
+    * A class for creating a new Game Board
+    * <p>This class represents a Game Board and provides methods for initializing a board, making moves,
+    * checking if the board is full, checking if there is a winner, and getting suggestions for moves.</p>
+    * <p>The Board is represented as a 2D array of characters, with '-' representing an empty space,
+    * 'X' representing Player 1, and 'O' representing Player 2. </p>
+    * <p>Author: Diego Jared Avina</p>
+    * <p>Version: 19.0.2, 2023-01-17</p>
+*/
 public class Board {
+    /** The Game Board */
     private char[][] board;
+    /** The size of the board */
     private int size;
     
+    /**
+     * Constructs a new Game Board of the given size.
+     * @param size the size of the Game Board.
+    */
     public Board(int size){
         this.size = size;
         this.board = new char[size][size];

@@ -43,11 +43,16 @@ public class ConsoleUI {
         col = scanner.nextInt();
         return new Coordinate(row, col);
     }
-    
+
     public int chooseMove(){
         System.out.println("Please choose one of the following");
         System.out.println("1. Choose Row and Column");
         System.out.println("2. Enable CheatMode");
+        return scanner.nextInt();
+    }
+
+    public int chooseBoardSize(){
+        System.out.println("Please choose the size of the board: ");
         return scanner.nextInt();
     }
     

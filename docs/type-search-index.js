@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"noapplet.assignments.HW2","l":"Board"},{"p":"noapplet.assignments.HW2","l":"Coordinate"}];updateSearchResults();

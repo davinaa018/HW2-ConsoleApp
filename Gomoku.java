@@ -11,7 +11,7 @@ public class Gomoku {
 
     public Gomoku() {
         this.ui = new ConsoleUI();
-        this.board = new Board(15);
+        this.board = new Board(ui.chooseBoardSize());
         this.players = new ArrayList<>();
         this.currentPlayerIndex = 0;
     }
